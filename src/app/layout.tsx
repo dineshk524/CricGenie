@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import BackgroundBalls from "@/components/BackgroundBalls";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
+        <BackgroundBalls
+  count={140}     
+  redRatio={0.12} 
+  speed={25}        
+  sizeRange={[1.5, 2]} 
+  opacity={0.55}     
+/>
         {children}
       </body>
     </html>
