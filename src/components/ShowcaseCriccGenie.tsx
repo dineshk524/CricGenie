@@ -39,8 +39,8 @@ const SCREENS: Screen[] = [
 
 const ShowcaseCriccGenie: React.FC = () => {
   // flipped state per card (false = show front/Android, true = show back/iOS)
-  const [flipped, setFlipped] = useState<boolean[]>(
-    () => new Array(SCREENS.length).fill(false)
+  const [flipped, setFlipped] = useState<boolean[]>(() =>
+    new Array(SCREENS.length).fill(false)
   );
   // which card the mouse is hovering (forces flip visually)
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -50,26 +50,31 @@ const ShowcaseCriccGenie: React.FC = () => {
   // Auto: one-by-one flip every 2s
   useEffect(() => {
     const id = setInterval(() => {
-      setFlipped(prev => {
+      setFlipped((prev) => {
         const next = [...prev];
         next[autoIndex] = !next[autoIndex]; // toggle this card
         return next;
       });
-      setAutoIndex(prev => (prev + 1) % SCREENS.length);
-    },1000); // 2s
+      setAutoIndex((prev) => (prev + 1) % SCREENS.length);
+    }, 1000); // 2s
     return () => clearInterval(id);
   }, [autoIndex]);
 
   return (
-    <section className="relative z-10 bg-transparent px-6 py-16 text-white md:py-20 -mt-px">
+    <section className="relative z-10 bg-transparent px-16 py-12 md:py-16 -mt-6 md:-mt-10 text-white scroll-mt-24">
       <div className="mx-auto max-w-6xl">
         {/* heading */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="animate-fade-up text-3xl font-extrabold tracking-tight md:text-5xl">
-            See CriccGenie in Action
+            See{" "}
+            <span className="bg-gradient-to-r from-sky-400 via-fuchsia-500 to-emerald-400 bg-clip-text text-transparent">
+              CriccGenie
+            </span>{" "}
+            in Action
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl animate-fade-up text-base text-gray-300/90 md:text-lg">
-            Hover any card to flip it. They also flip one-by-one automatically every 2s.
+
+          <p className="mx-auto mt-6 max-w-2xl animate-fade-up text-base text-gray-200/100 md:text-lg">
+            Stay updated with every match, every score, every moment.
           </p>
         </div>
 
@@ -113,9 +118,11 @@ const ShowcaseCriccGenie: React.FC = () => {
                 </div>
 
                 {/* caption */}
-                <div className="mt-6 text-center">
-                  <h3 className="text-base font-semibold md:text-lg">{s.title}</h3>
-                  <p className="mt-1 text-sm text-gray-400">{s.desc}</p>
+                <div className="text-center">
+                  <h3 className="text-base font-semibold md:text-lg">
+                    {s.title}
+                  </h3>
+                  <p className="mt-1 text-m text-gray-300">{s.desc}</p>
                 </div>
               </div>
             );
@@ -124,10 +131,19 @@ const ShowcaseCriccGenie: React.FC = () => {
       </div>
 
       <style jsx>{`
-        .perspective { perspective: 1200px; }
-        .backface-hidden { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .transform-style-preserve-3d { transform-style: preserve-3d; }
+        .perspective {
+          perspective: 1200px;
+        }
+        .backface-hidden {
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
       `}</style>
     </section>
   );

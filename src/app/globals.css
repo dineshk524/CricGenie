@@ -25,17 +25,23 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 :root {
-  --bg: #0b1020;         /* deep navy */
-  --card: #0e1426;       /* surface */
-  --muted: #9aa4bf;      /* text secondary */
-  --brand: #7c3aed;      /* violet */
-  --brand-2: #22d3ee;    /* cyan */
-  --accent: #f59e0b;     /* amber */
+  --bg: #0b1020; /* deep navy */
+  --card: #0e1426; /* surface */
+  --muted: #9aa4bf; /* text secondary */
+  --brand: #7c3aed; /* violet */
+  --brand-2: #22d3ee; /* cyan */
+  --accent: #f59e0b; /* amber */
 }
 
-.dark body { background: var(--bg); color: #e5e7eb; }
+.dark body {
+  background: var(--bg);
+  color: #e5e7eb;
+}
 
 /* app/globals.css */
-html, body { overflow-x: hidden; }
+html,
+body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
