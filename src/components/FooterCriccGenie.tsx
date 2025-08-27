@@ -30,7 +30,7 @@ const FooterCriccGenie: React.FC = () => {
   };
 
   return (
-    <footer className="relative overflow-hidden text-gray-300">
+    <footer className="relative overflow-hidden text-gray-300 -mt-20">
       {/* floating glow orbs */}
       <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />

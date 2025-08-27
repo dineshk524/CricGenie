@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
@@ -45,18 +45,25 @@ const HeroCriccGenie: React.FC = () => {
   // 0 logo → 1 title → 2 subtitle → 3 ctas → 4 stats
   const [step, setStep] = useState(0);
 
-  // NEW: loop the typewriter without breaking the sequence
+  // delay hero animations until intro finishes (~4.8s)
+  useEffect(() => {
+    const INTRO_TIME = 4800; // total ms of intro overlay
+    const t = setTimeout(() => setStep(1), INTRO_TIME);
+    return () => clearTimeout(t);
+  }, []);
+
+  // loop the typewriter without breaking the sequence
   const [typeCycle, setTypeCycle] = useState(0);
   const [firstDone, setFirstDone] = useState(false);
 
   return (
     <section className="relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden bg-transparent px-6 text-white">
-      {/* 1) LOGO (slow) */}
+      {/* 1) LOGO (starts when step >= 1) */}
       <motion.div
         initial={{ y: -120, opacity: 0, scale: 0.9 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
+        animate={step >= 1 ? { y: 0, opacity: 1, scale: 1 } : {}}
         transition={{ type: "spring", stiffness: 120, damping: 18, duration: 1.1 }}
-        onAnimationComplete={() => setStep(1)}
+        className="mt-6 md:mt-0"
       >
         <Image
           src="/Logo/Logo.png"
@@ -72,9 +79,7 @@ const HeroCriccGenie: React.FC = () => {
         {step >= 1 && (
           <h1 className="text-4xl font-extrabold md:text-6xl">
             <span className="relative inline-flex items-baseline">
-              {/* keep the caret logic same as your version: only before first completion */}
               {step === 1 && <span className="mr-1 h-[1.05em] w-[2px] animate-[blink_1s_steps(1,end)_infinite] bg-white/80" />}
-              {/* key={typeCycle} restarts the animation to loop indefinitely */}
               <span key={typeCycle}>
                 <Typewriter
                   parts={[
@@ -83,12 +88,10 @@ const HeroCriccGenie: React.FC = () => {
                     { text: " ", className: "" },
                   ]}
                   onDone={() => {
-                    // advance the sequence only once
                     if (!firstDone) {
                       setFirstDone(true);
                       setStep(2);
                     }
-                    // restart typing after a short pause
                     setTimeout(() => setTypeCycle((c) => c + 1), 800);
                   }}
                 />
@@ -99,7 +102,7 @@ const HeroCriccGenie: React.FC = () => {
         )}
       </div>
 
-      {/* 3) SUBTITLE (after typing) */}
+      {/* 3) SUBTITLE */}
       <motion.p
         initial={{ y: 16, opacity: 0 }}
         animate={step >= 2 ? { y: 0, opacity: 1 } : {}}
@@ -110,7 +113,7 @@ const HeroCriccGenie: React.FC = () => {
         Your Cricket Genie for Live Scores ✨ Real-time updates, instant scores, and deep coverage in a modern dark theme.
       </motion.p>
 
-      {/* 4) CTAs (drop + fade) */}
+      {/* 4) CTAs */}
       <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
         <motion.a
           href="#"
@@ -136,7 +139,7 @@ const HeroCriccGenie: React.FC = () => {
         </motion.a>
       </div>
 
-      {/* 5) STATS (last, rise from bottom) */}
+      {/* 5) STATS */}
       <div className="mt-15 grid w-full max-w-4xl grid-cols-3 gap-5">
         {statsData.map((s, i) => (
           <motion.div
