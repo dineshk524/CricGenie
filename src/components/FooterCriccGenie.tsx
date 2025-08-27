@@ -41,7 +41,7 @@ const FooterCriccGenie: React.FC = () => {
           <div>
             <div className="flex items-center gap-3">
               <Image
-                src="/logo.png"
+                src="/Logo/Logo.png"
                 alt="CriccGenie"
                 width={78}
                 height={68}

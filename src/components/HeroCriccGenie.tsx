@@ -59,7 +59,7 @@ const HeroCriccGenie: React.FC = () => {
         onAnimationComplete={() => setStep(1)}
       >
         <Image
-          src="/logo.png"
+          src="/Logo/Logo.png"
           alt="CriccGenie"
           width={140}
           height={140}
