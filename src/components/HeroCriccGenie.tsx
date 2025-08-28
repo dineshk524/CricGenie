@@ -1,3 +1,4 @@
+// src/components/HeroCriccGenie.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -23,7 +24,7 @@ const GooglePlayIcon = () => (
 const typeParent: Variants = { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { staggerChildren: 0.09 } } };
 const typeChar: Variants = { hidden: { opacity: 0, y: 8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.28 } } };
 
-const Typewriter: React.FC<{ parts: Array<{ text: string; className: string }>; onDone?: () => void; }> = ({ parts, onDone }) => (
+const Typewriter: React.FC<{ parts: Array<{ text: string; className: string }>; onDone?: () => void }> = ({ parts, onDone }) => (
   <motion.span variants={typeParent} initial="hidden" animate="visible" onAnimationComplete={onDone} style={{ display: "inline-block" }}>
     {parts.flatMap((p, pi) =>
       Array.from(p.text).map((ch, ci) => (
@@ -41,13 +42,22 @@ const statsData = [
   { label: "Live Updates", value: "24/7", color: "text-rose-300" },
 ];
 
+// ✅ faster floating animation
+const floatAnim = (i: number) => ({
+  y: [0, -10, 0, 10, 0],
+  rotate: [0, 1, 0, -1, 0],
+  transition: {
+    duration: 3 + i * 0.3, // shorter cycle = faster movement
+    ease: "easeInOut",
+    repeat: Infinity,
+  },
+});
+
 const HeroCriccGenie: React.FC = () => {
-  // 0 logo → 1 title → 2 subtitle → 3 ctas → 4 stats
   const [step, setStep] = useState(0);
 
-  // delay hero animations until intro finishes (~4.8s)
   useEffect(() => {
-    const INTRO_TIME = 4800;
+    const INTRO_TIME = 5500;
     const t = setTimeout(() => setStep(1), INTRO_TIME);
     return () => clearTimeout(t);
   }, []);
@@ -56,7 +66,7 @@ const HeroCriccGenie: React.FC = () => {
 
   return (
     <section className="relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden bg-transparent px-6 text-white">
-      {/* 1) LOGO */}
+      {/* LOGO */}
       <motion.div
         initial={{ y: -120, opacity: 0, scale: 0.9 }}
         animate={step >= 1 ? { y: 0, opacity: 1, scale: 1 } : {}}
@@ -68,23 +78,20 @@ const HeroCriccGenie: React.FC = () => {
           alt="CriccGenie"
           width={140}
           height={140}
-          className="mx-auto h-40 w-40 rounded-2xl border border-white/15 bg-white/10 p-2 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md"
+          className="mx-auto h-43 w-45 rounded-2xl border p-2 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-md"
         />
       </motion.div>
 
-      {/* 2) HEADING (typewriter once) */}
+      {/* HEADING */}
       <div className="relative mt-8 text-center">
         {step >= 1 && (
           <h1 className="text-4xl font-extrabold md:text-6xl">
             <span className="relative inline-flex items-baseline">
-              {step === 1 && (
-                <span className="mr-1 h-[1.05em] w-[2px] animate-[blink_1s_steps(1,end)_infinite] bg-white/80" />
-              )}
+              {step === 1 && <span className="mr-1 h-[1.05em] w-[2px] animate-[blink_1s_steps(1,end)_infinite] bg-white/80" />}
               <Typewriter
                 parts={[
                   { text: "Cric", className: "bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent" },
                   { text: "Genie", className: "text-sky-300" },
-                  { text: " ", className: "" },
                 ]}
                 onDone={() => {
                   if (!firstDone) {
@@ -99,7 +106,7 @@ const HeroCriccGenie: React.FC = () => {
         )}
       </div>
 
-      {/* 3) SUBTITLE */}
+      {/* SUBTITLE */}
       <motion.p
         initial={{ y: 16, opacity: 0 }}
         animate={step >= 2 ? { y: 0, opacity: 1 } : {}}
@@ -110,7 +117,7 @@ const HeroCriccGenie: React.FC = () => {
         Your Cricket Genie for Live Scores ✨ Real-time updates, instant scores, and deep coverage in a modern dark theme.
       </motion.p>
 
-      {/* 4) CTAs */}
+      {/* CTAs */}
       <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
         <motion.a
           href="#"
@@ -136,14 +143,19 @@ const HeroCriccGenie: React.FC = () => {
         </motion.a>
       </div>
 
-      {/* 5) STATS */}
+      {/* STATS */}
       <div className="mt-15 grid w-full max-w-4xl grid-cols-3 gap-5">
         {statsData.map((s, i) => (
           <motion.div
             key={s.label}
             initial={{ y: 26, opacity: 0 }}
-            animate={step >= 4 ? { y: 0, opacity: 1 } : {}}
-            transition={{ delay: 0.12 * i, duration: 0.55, ease: "easeOut" }}
+            animate={
+              step >= 4
+                ? { y: 0, opacity: 1, transition: { delay: 0.12 * i, duration: 0.55, ease: "easeOut" } }
+                : {}
+            }
+            whileInView={step >= 4 ? floatAnim(i) : {}}
+            viewport={{ once: false, amount: 0.6 }}
             className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center shadow-inner backdrop-blur-md transition-transform will-change-transform hover:-translate-y-1"
           >
             <div className={`text-xl font-bold ${s.color}`}>{s.value}</div>
@@ -154,8 +166,8 @@ const HeroCriccGenie: React.FC = () => {
 
       <style jsx>{`
         @keyframes blink {
-          0%,49% { opacity: 1 }
-          50%,100% { opacity: 0 }
+          0%,49% { opacity:1 }
+          50%,100% { opacity:0 }
         }
       `}</style>
     </section>

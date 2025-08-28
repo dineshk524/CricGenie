@@ -138,11 +138,11 @@ const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
                 : "scale-95"
             }`}
           >
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-3 shadow-xl backdrop-blur-md">
+            <div className="rounded-2xl  p-3 shadow-xl backdrop-blur-md">
               <Image
                 src="/Logo/Logo.png"
                 alt="CriccGenie"
-                width={Math.round(ballSize * 0.55)}
+                width={Math.round(ballSize * 1.55)}
                 height={Math.round(ballSize * 0.55)}
                 className="object-contain"
                 priority
