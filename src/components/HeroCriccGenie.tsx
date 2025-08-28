@@ -3,7 +3,8 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, type TargetAndTransition, type Transition } from "framer-motion";
+
 
 /* icons */
 const AppleIcon = () => (
@@ -43,15 +44,19 @@ const statsData = [
 ];
 
 // ✅ faster floating animation
-const floatAnim = (i: number) => ({
-  y: [0, -10, 0, 10, 0],
-  rotate: [0, 1, 0, -1, 0],
-  transition: {
-    duration: 3 + i * 0.3, // shorter cycle = faster movement
+const floatAnim = (i: number): TargetAndTransition => {
+  const t: Transition = {
+    duration: 3 + i * 0.3,
     ease: "easeInOut",
     repeat: Infinity,
-  },
-});
+  };
+  return {
+    y: [0, -10, 0, 10, 0],
+    rotate: [0, 1, 0, -1, 0],
+    transition: t,
+  };
+};
+
 
 const HeroCriccGenie: React.FC = () => {
   const [step, setStep] = useState(0);
@@ -154,7 +159,7 @@ const HeroCriccGenie: React.FC = () => {
                 ? { y: 0, opacity: 1, transition: { delay: 0.12 * i, duration: 0.55, ease: "easeOut" } }
                 : {}
             }
-            whileInView={step >= 4 ? floatAnim(i) : {}}
+            whileInView={step >= 4 ? floatAnim(i) : undefined}
             viewport={{ once: false, amount: 0.6 }}
             className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center shadow-inner backdrop-blur-md transition-transform will-change-transform hover:-translate-y-1"
           >
