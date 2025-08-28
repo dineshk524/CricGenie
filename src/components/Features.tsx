@@ -1,4 +1,4 @@
-// src/components/FeaturesCriccGenie.tsx
+// src/components/FeaturesCricGenie.tsx
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
@@ -24,7 +24,7 @@ const FEATURES: Feature[] = [
   { title: "Team Analysis",      desc: "Head-to-head & advanced team insights.", icon: <span className="text-xl">👥</span>, glowFrom: "from-purple-400/30",  glowTo: "to-fuchsia-400/30" },
 ];
 
-const FeaturesCriccGenie: React.FC = () => {
+const FeaturesCricGenie: React.FC = () => {
   const [headVisible, setHeadVisible] = useState(false);
   const [subVisible, setSubVisible] = useState(false);
   const [show, setShow] = useState<boolean[]>(() => new Array(FEATURES.length).fill(false));
@@ -144,4 +144,4 @@ const FeaturesCriccGenie: React.FC = () => {
   );
 };
 
-export default FeaturesCriccGenie;
+export default FeaturesCricGenie;

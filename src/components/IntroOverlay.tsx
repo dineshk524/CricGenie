@@ -1,4 +1,4 @@
-// src/components/IntroCriccGenie.tsx
+// src/components/IntroCricGenie.tsx
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -14,7 +14,7 @@ const SPIN_MS = 900;
 const SPINS = 2;
 const BG = "#071014";
 
-const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
+const IntroCricGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
   const [stage, setStage] = useState<Stage>("orbit");
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -141,7 +141,7 @@ const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
             <div className="rounded-2xl border border-white/15 bg-white/10 p-3 shadow-xl backdrop-blur-md">
               <Image
                 src="/Logo/Logo.png"
-                alt="CriccGenie"
+                alt="CricGenie"
                 width={Math.round(ballSize * 0.55)}
                 height={Math.round(ballSize * 0.55)}
                 className="object-contain"
@@ -160,7 +160,7 @@ const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
           }`}
         >
           <span className="bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent">
-            CriccGenie
+            CricGenie
           </span>
         </div>
       </div>
@@ -182,4 +182,4 @@ const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
   );
 };
 
-export default IntroCriccGenie;
+export default IntroCricGenie;

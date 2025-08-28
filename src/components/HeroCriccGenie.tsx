@@ -41,7 +41,7 @@ const statsData = [
   { label: "Live Updates", value: "24/7", color: "text-rose-300" },
 ];
 
-const HeroCriccGenie: React.FC = () => {
+const HeroCricGenie: React.FC = () => {
   // 0 logo → 1 title → 2 subtitle → 3 ctas → 4 stats
   const [step, setStep] = useState(0);
 
@@ -67,7 +67,7 @@ const HeroCriccGenie: React.FC = () => {
       >
         <Image
           src="/Logo/Logo.png"
-          alt="CriccGenie"
+          alt="CricGenie"
           width={140}
           height={140}
           className="mx-auto h-40 w-40 rounded-2xl border border-white/15 bg-white/10 p-2 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] backdrop-blur-md"
@@ -162,4 +162,4 @@ const HeroCriccGenie: React.FC = () => {
   );
 };
 
-export default HeroCriccGenie;
+export default HeroCricGenie;
