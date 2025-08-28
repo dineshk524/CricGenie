@@ -37,7 +37,7 @@ const SCREENS: Screen[] = [
   },
 ];
 
-const ShowcaseCricGenie: React.FC = () => {
+const ShowcaseCriccGenie: React.FC = () => {
   // flipped state per card (false = show front/Android, true = show back/iOS)
   const [flipped, setFlipped] = useState<boolean[]>(() =>
     new Array(SCREENS.length).fill(false)
@@ -68,7 +68,7 @@ const ShowcaseCricGenie: React.FC = () => {
           <h2 className="animate-fade-up text-3xl font-extrabold tracking-tight md:text-5xl">
             See{" "}
             <span className="bg-gradient-to-r from-sky-400 via-fuchsia-500 to-emerald-400 bg-clip-text text-transparent">
-              CricGenie
+              CriccGenie
             </span>{" "}
             in Action
           </h2>
@@ -149,4 +149,4 @@ const ShowcaseCricGenie: React.FC = () => {
   );
 };
 
-export default ShowcaseCricGenie;
+export default ShowcaseCriccGenie;

@@ -3,13 +3,13 @@
 import React from "react";
 import GlobalBackground from "@/components/GlobalBackground";
 import IntroOverlay from "@/components/IntroOverlay";
-import HeroCricGenie from "@/components/HeroCricGenie";
-import FeaturesCricGenie from "@/components/Features";
-import ShowcaseCricGenie from "@/components/ShowcaseCricGenie";
-import WhyChooseCricGenie from "@/components/WhyChooseCricGenie";
+import HeroCriccGenie from "@/components/HeroCriccGenie";
+import FeaturesCriccGenie from "@/components/Features";
+import ShowcaseCriccGenie from "@/components/ShowcaseCriccGenie";
+import WhyChooseCriccGenie from "@/components/WhyChooseCriccGenie";
 import DownloadCTA from "@/components/DownloadCTA";
-import FaqCricGenie from "@/components/FaqCricGenie";
-import FooterCricGenie from "@/components/FooterCricGenie";
+import FaqCriccGenie from "@/components/FaqCriccGenie";
+import FooterCriccGenie from "@/components/FooterCriccGenie";
 import SlideIn from "@/components/SlideIn";
 
 export default function Page() {
@@ -17,18 +17,18 @@ export default function Page() {
     <>
       <IntroOverlay />
       <GlobalBackground />
-      <HeroCricGenie />
+      <HeroCriccGenie />
 
       <SlideIn from="left" delay={0.2}>
-        <FeaturesCricGenie />
+        <FeaturesCriccGenie />
       </SlideIn>
 
       <SlideIn from="right" delay={0.2}>
-        <ShowcaseCricGenie />
+        <ShowcaseCriccGenie />
       </SlideIn>
 
       <SlideIn from="left" delay={0.2} >
-        <WhyChooseCricGenie />
+        <WhyChooseCriccGenie />
       </SlideIn>
 
       <SlideIn from="right" delay={0.2} >
@@ -36,11 +36,11 @@ export default function Page() {
       </SlideIn>
 
       <SlideIn from="left" delay={0.2} >
-        <FaqCricGenie />
+        <FaqCriccGenie />
       </SlideIn>
 
       <SlideIn from="right" delay={0.1} >
-        <FooterCricGenie />
+        <FooterCriccGenie />
       </SlideIn>
     </>
   );

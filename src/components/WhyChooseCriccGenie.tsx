@@ -1,4 +1,4 @@
-// src/components/WhyChooseCricGenie.tsx
+// src/components/WhyChooseCriccGenie.tsx
 "use client";
 
 import React from "react";
@@ -54,7 +54,7 @@ const PILLARS: Pillar[] = [
   },
 ];
 
-const WhyChooseCricGenie: React.FC = () => {
+const WhyChooseCriccGenie: React.FC = () => {
   return (
     <section className="relative z-10 overflow-hidden bg-transparent px-6 py-20 text-white md:py-28">
       {/* ambient blobs */}
@@ -68,7 +68,7 @@ const WhyChooseCricGenie: React.FC = () => {
           <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl -mt-20">
             Why fans pick{" "}
             <span className="bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent">
-              CricGenie
+              CriccGenie
             </span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-gray-300/90 md:text-lg">
@@ -131,7 +131,7 @@ const WhyChooseCricGenie: React.FC = () => {
             <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_50%_-10%,rgba(56,189,248,0.10),transparent),radial-gradient(60%_120%_at_80%_120%,rgba(168,85,247,0.10),transparent),radial-gradient(60%_120%_at_10%_110%,rgba(16,185,129,0.10),transparent)]" />
             <h3 className="text-2xl font-bold md:text-3xl">Always on the crease with you ✨</h3>
             <p className="mx-auto mt-2 max-w-3xl text-sm text-gray-300 md:text-base">
-              Join thousands of fans who trust CricGenie daily.
+              Join thousands of fans who trust CriccGenie daily.
             </p>
 
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:gap-4">
@@ -236,4 +236,4 @@ const WhyChooseCricGenie: React.FC = () => {
   );
 };
 
-export default WhyChooseCricGenie;
+export default WhyChooseCriccGenie;

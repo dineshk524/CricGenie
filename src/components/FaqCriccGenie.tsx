@@ -5,14 +5,14 @@ import React, { useState } from "react";
 type QA = { q: string; a: string };
 
 const FAQS: QA[] = [
-  { q: "Is CricGenie free to use?", a: "Yes. CricGenie is free to download and use. You get comprehensive coverage without subscription fees." },
-  { q: "Which matches does CricGenie cover?", a: "International, domestic, and major T20 leagues across the world — with schedules, squads, and live updates." },
+  { q: "Is CriccGenie free to use?", a: "Yes. CriccGenie is free to download and use. You get comprehensive coverage without subscription fees." },
+  { q: "Which matches does CriccGenie cover?", a: "International, domestic, and major T20 leagues across the world — with schedules, squads, and live updates." },
   { q: "How do I get match notifications?", a: "Enable notifications in the app settings. Choose events like wickets, milestones, results and more." },
   { q: "Does the app work offline?", a: "You can browse cached pages offline. Live scores and commentary require an active internet connection." },
   { q: "How accurate are the live scores?", a: "We source from official partners and venues. Scores are near real-time with constant validation." },
 ];
 
-const FaqCricGenie: React.FC = () => {
+const FaqCriccGenie: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -30,7 +30,7 @@ const FaqCricGenie: React.FC = () => {
           </span>
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-gray-300/90 md:text-lg">
-          Everything you need to know about CricGenie.
+          Everything you need to know about CriccGenie.
         </p>
       </div>
 
@@ -136,4 +136,4 @@ const FaqCricGenie: React.FC = () => {
   );
 };
 
-export default FaqCricGenie;
+export default FaqCriccGenie;

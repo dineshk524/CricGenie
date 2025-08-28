@@ -9,7 +9,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-const FooterCricGenie: React.FC = () => {
+const FooterCriccGenie: React.FC = () => {
   // show the FAB only after a small scroll
   const [showTop, setShowTop] = useState(false);
 
@@ -42,12 +42,12 @@ const FooterCricGenie: React.FC = () => {
             <div className="flex items-center gap-3">
               <Image
                 src="/Logo/Logo.png"
-                alt="CricGenie"
+                alt="CriccGenie"
                 width={78}
                 height={68}
                 className="rounded-lg"
               />
-              <span className="text-2xl font-bold text-white">CricGenie</span>
+              <span className="text-2xl font-bold text-white">CriccGenie</span>
             </div>
             <p className="mt-4 max-w-sm text-base text-gray-400 md:text-lg">
               Your ultimate cricket companion for live scores, match updates,
@@ -135,13 +135,13 @@ const FooterCricGenie: React.FC = () => {
 
         {/* bottom bar */}
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row md:text-base">
-          <p>© 2025 CricGenie. All rights reserved.</p>
+          <p>© 2025 CriccGenie. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
             <a
-              href="mailto:support@CricGenie.com"
+              href="mailto:support@CriccGenie.com"
               className="hover:text-emerald-400"
             >
-              support@CricGenie.com
+              support@CriccGenie.com
             </a>
             <span>Available on iOS & Android</span>
           </div>
@@ -194,4 +194,4 @@ const FooterCricGenie: React.FC = () => {
   );
 };
 
-export default FooterCricGenie;
+export default FooterCriccGenie;
