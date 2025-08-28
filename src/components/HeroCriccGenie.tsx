@@ -47,18 +47,16 @@ const HeroCriccGenie: React.FC = () => {
 
   // delay hero animations until intro finishes (~4.8s)
   useEffect(() => {
-    const INTRO_TIME = 4800; // total ms of intro overlay
+    const INTRO_TIME = 4800;
     const t = setTimeout(() => setStep(1), INTRO_TIME);
     return () => clearTimeout(t);
   }, []);
 
-  // loop the typewriter without breaking the sequence
-  const [typeCycle, setTypeCycle] = useState(0);
   const [firstDone, setFirstDone] = useState(false);
 
   return (
     <section className="relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden bg-transparent px-6 text-white">
-      {/* 1) LOGO (starts when step >= 1) */}
+      {/* 1) LOGO */}
       <motion.div
         initial={{ y: -120, opacity: 0, scale: 0.9 }}
         animate={step >= 1 ? { y: 0, opacity: 1, scale: 1 } : {}}
@@ -74,28 +72,27 @@ const HeroCriccGenie: React.FC = () => {
         />
       </motion.div>
 
-      {/* 2) HEADING (typewriter) */}
+      {/* 2) HEADING (typewriter once) */}
       <div className="relative mt-8 text-center">
         {step >= 1 && (
           <h1 className="text-4xl font-extrabold md:text-6xl">
             <span className="relative inline-flex items-baseline">
-              {step === 1 && <span className="mr-1 h-[1.05em] w-[2px] animate-[blink_1s_steps(1,end)_infinite] bg-white/80" />}
-              <span key={typeCycle}>
-                <Typewriter
-                  parts={[
-                    { text: "Cric", className: "bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent" },
-                    { text: "Genie", className: "text-sky-300" },
-                    { text: " ", className: "" },
-                  ]}
-                  onDone={() => {
-                    if (!firstDone) {
-                      setFirstDone(true);
-                      setStep(2);
-                    }
-                    setTimeout(() => setTypeCycle((c) => c + 1), 800);
-                  }}
-                />
-              </span>
+              {step === 1 && (
+                <span className="mr-1 h-[1.05em] w-[2px] animate-[blink_1s_steps(1,end)_infinite] bg-white/80" />
+              )}
+              <Typewriter
+                parts={[
+                  { text: "Cric", className: "bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent" },
+                  { text: "Genie", className: "text-sky-300" },
+                  { text: " ", className: "" },
+                ]}
+                onDone={() => {
+                  if (!firstDone) {
+                    setFirstDone(true);
+                    setStep(2);
+                  }
+                }}
+              />
               <span className="ml-2">🏏</span>
             </span>
           </h1>
@@ -156,7 +153,10 @@ const HeroCriccGenie: React.FC = () => {
       </div>
 
       <style jsx>{`
-        @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+        @keyframes blink {
+          0%,49% { opacity: 1 }
+          50%,100% { opacity: 0 }
+        }
       `}</style>
     </section>
   );

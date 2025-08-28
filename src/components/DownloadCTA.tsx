@@ -31,25 +31,29 @@ const DownloadCTA: React.FC = () => {
           </span>
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">
-          Download CricGenie now and join the ultimate cricket community!
+          Download CriccGenie now and join the ultimate cricket community!
         </p>
 
-        {/* store buttons */}
+        {/* store buttons (no animations) */}
         <div className="mt-10 flex flex-wrap justify-center gap-6">
           {/* App Store */}
-          <a href="#" className="store-btn group relative inline-flex items-center gap-3 rounded-2xl px-7 py-4 text-base font-medium">
-            <span className="btn-fire" />
+          <a
+            href="#"
+            aria-label="Get on App Store"
+            className="inline-flex items-center gap-3 rounded-2xl px-7 py-4 text-base font-medium bg-white/10 border border-white/15 backdrop-blur-md hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors"
+          >
             <AppleIcon />
-            <span className="text-white/90">Download on the</span>
-            <span className="font-semibold">App Store</span>
+            <span className="font-semibold">Download on the app store</span>
           </a>
 
           {/* Play Store */}
-          <a href="#" className="store-btn store-btn--green group relative inline-flex items-center gap-3 rounded-2xl px-7 py-4 text-base font-medium">
-            <span className="btn-fire" />
+          <a
+            href="#"
+            aria-label="Get on Play Store"
+            className="inline-flex items-center gap-3 rounded-2xl px-7 py-4 text-base font-medium bg-emerald-600/80 border border-emerald-300/40 backdrop-blur-md hover:bg-emerald-500/80 focus:outline-none focus:ring-2 focus:ring-emerald-300/40 transition-colors"
+          >
             <PlayIcon />
-            <span className="text-white/90">Get it on</span>
-            <span className="font-semibold">Play Store</span>
+            <span className="font-semibold">Get it on Play Store</span>
           </a>
         </div>
 
@@ -61,7 +65,10 @@ const DownloadCTA: React.FC = () => {
             { label: "Secure & Safe", path: "M6 10V8a6 6 0 0112 0v2M5 10h14v8H5z" },
             { label: "Instant Updates", path: "M21 12a9 9 0 10.8 3.6M21 12h-6" },
           ].map((c, i) => (
-            <span key={i} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 shadow-sm backdrop-blur-md">
+            <span
+              key={i}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 shadow-sm backdrop-blur-md"
+            >
               <ChipIcon path={c.path} />
               {c.label}
             </span>
@@ -69,57 +76,8 @@ const DownloadCTA: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        .store-btn {
-          background: rgba(255,255,255,0.1);
-          border: 1px solid rgba(255,255,255,0.15);
-          backdrop-filter: blur(14px);
-          position: relative;
-          overflow: hidden;
-          transition: transform .25s ease, box-shadow .25s ease;
-          animation: btnBreath 3s ease-in-out infinite;
-        }
-        .store-btn:hover {
-          transform: translateY(-6px) scale(1.05);
-        }
-        .store-btn--green {
-          background: rgba(16,185,129,0.25);
-          border-color: rgba(52,211,153,0.45);
-        }
-
-        /* fiery animated glow */
-        .btn-fire {
-          content: "";
-          position: absolute;
-          inset: -20px;
-          border-radius: 28px;
-          background: conic-gradient(
-            from 0deg,
-            rgba(13, 195, 40, 0.55),
-            rgba(48, 180, 209, 0.6),
-            rgba(35, 18, 14, 0.5),
-            rgba(131, 0, 46, 0.69),
-            rgba(250, 238, 229, 0.55)
-          );
-          filter: blur(-4px);
-          z-index: -1;
-          animation: firePulse 3s ease-in-out infinite, fireRotate 6s linear infinite;
-        }
-
-        @keyframes btnBreath {
-          0%,100% { transform: scale(1); }
-          50%     { transform: scale(1.02); }
-        }
-
-        @keyframes firePulse {
-          0%,100% { opacity: 0.45; transform: scale(0.96); }
-          50%     { opacity: 0.9; transform: scale(1.05); }
-        }
-        @keyframes fireRotate {
-          0% { transform: rotate(0deg) scale(1); }
-          100% { transform: rotate(360deg) scale(1); }
-        }
-      `}</style>
+      {/* stripped all button animations from the stylesheet */}
+      <style jsx>{``}</style>
     </section>
   );
 };
