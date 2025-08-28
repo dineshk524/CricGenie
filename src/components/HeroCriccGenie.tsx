@@ -83,7 +83,7 @@ const HeroCriccGenie: React.FC = () => {
           alt="CriccGenie"
           width={140}
           height={140}
-          className="mx-auto h-43 w-45 rounded-2xl border p-2 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-md"
+          className="mx-auto h-43 w-45 rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] backdrop-blur-md"
         />
       </motion.div>
 
