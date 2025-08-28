@@ -31,7 +31,7 @@ const DownloadCTA: React.FC = () => {
           </span>
         </h2>
         <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">
-          Download CriccGenie now and join the ultimate cricket community!
+          Download CricGenie now and join the ultimate cricket community!
         </p>
 
         {/* store buttons */}

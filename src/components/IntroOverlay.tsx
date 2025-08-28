@@ -160,7 +160,7 @@ const IntroCriccGenie: React.FC<{ onDone?: () => void }> = ({ onDone }) => {
           }`}
         >
           <span className="bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent">
-            CriccGenie
+            CricGenie
           </span>
         </div>
       </div>

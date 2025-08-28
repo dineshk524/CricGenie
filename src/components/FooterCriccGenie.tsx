@@ -47,7 +47,7 @@ const FooterCriccGenie: React.FC = () => {
                 height={68}
                 className="rounded-lg"
               />
-              <span className="text-2xl font-bold text-white">CriccGenie</span>
+              <span className="text-2xl font-bold text-white">CricGenie</span>
             </div>
             <p className="mt-4 max-w-sm text-base text-gray-400 md:text-lg">
               Your ultimate cricket companion for live scores, match updates,
@@ -135,13 +135,13 @@ const FooterCriccGenie: React.FC = () => {
 
         {/* bottom bar */}
         <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row md:text-base">
-          <p>© 2025 CriccGenie. All rights reserved.</p>
+          <p>© 2025 CricGenie. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
             <a
-              href="mailto:support@CriccGenie.com"
+              href="mailto:support@CricGenie.com"
               className="hover:text-emerald-400"
             >
-              support@CriccGenie.com
+              support@CricGenie.com
             </a>
             <span>Available on iOS & Android</span>
           </div>

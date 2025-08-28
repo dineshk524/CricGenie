@@ -83,7 +83,7 @@ const HeroCriccGenie: React.FC = () => {
               <span key={typeCycle}>
                 <Typewriter
                   parts={[
-                    { text: "Cricc", className: "bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent" },
+                    { text: "Cric", className: "bg-gradient-to-r from-emerald-300 via-sky-300 to-fuchsia-300 bg-clip-text text-transparent" },
                     { text: "Genie", className: "text-sky-300" },
                     { text: " ", className: "" },
                   ]}
