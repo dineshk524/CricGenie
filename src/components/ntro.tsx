@@ -7,7 +7,11 @@ import Image from "next/image";
 type IntroProps = {
   videoSrc?: string;
   lampSrc?: string;
+  logoSrc?: string;
   titleText?: string;
+  appearAtRatio?: number; // when to begin revealing title relative to video progress
+  leadMs?: number;         // or this many ms before video ends (whichever is earlier)
+  holdMs?: number;         // how long to hold title fully visible before fading out
   lampMs?: number;          // lamp travel time
   videoRate?: number;       // video speed
   titleDelayRatio?: number; // when to begin revealing title relative to video progress
