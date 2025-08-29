@@ -10,10 +10,10 @@ type IntroProps = {
   logoSrc?: string;
   titleText?: string;
   appearAtRatio?: number; // when to begin revealing title relative to video progress
-  leadMs?: number;         // or this many ms before video ends (whichever is earlier)
-  holdMs?: number;         // how long to hold title fully visible before fading out
-  lampMs?: number;          // lamp travel time
-  videoRate?: number;       // video speed
+  leadMs?: number; // or this many ms before video ends (whichever is earlier)
+  holdMs?: number; // how long to hold title fully visible before fading out
+  lampMs?: number; // lamp travel time
+  videoRate?: number; // video speed
   titleDelayRatio?: number; // when to begin revealing title relative to video progress
   onDone?: () => void;
 };
@@ -51,7 +51,7 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
     if (!moverRef.current || !lampImgRef.current || !videoRef.current) return;
 
     const mover = moverRef.current!;
-    const lamp  = lampImgRef.current!;
+    const lamp = lampImgRef.current!;
     const video = videoRef.current!;
 
     video.preload = "auto";
@@ -65,16 +65,24 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
     const imgH = isMobile ? 136 : 200;
     const leftPadding = isMobile ? 0 : 40;
 
-    const midX   = -vw * 0.45;
-    const midY   =  vh * 0.40;
+    const midX = -vw * 0.45;
+    const midY = vh * 0.4;
     const finalX = -(vw - (leftPadding + imgW));
-    const finalY = (vh / 2) - (imgH / 2);
+    const finalY = vh / 2 - imgH / 2;
 
     const pathAnim = mover.animate(
       [
         { transform: "translate(0px, 0px)", offset: 0, easing: "ease-in" },
-        { transform: `translate(${midX}px, ${midY}px)`, offset: 0.55, easing: "cubic-bezier(.2,.7,.2,1)" },
-        { transform: `translate(${finalX}px, ${finalY}px)`, offset: 1, easing: "cubic-bezier(.2,.6,.2,1)" },
+        {
+          transform: `translate(${midX}px, ${midY}px)`,
+          offset: 0.55,
+          easing: "cubic-bezier(.2,.7,.2,1)",
+        },
+        {
+          transform: `translate(${finalX}px, ${finalY}px)`,
+          offset: 1,
+          easing: "cubic-bezier(.2,.6,.2,1)",
+        },
       ],
       { duration: lampMs, fill: "forwards" }
     );
@@ -90,8 +98,12 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
     );
 
     pathAnim.onfinish = async () => {
-      try { await video.play(); } catch {}
-      try { video.playbackRate = videoRate; } catch {}
+      try {
+        await video.play();
+      } catch {}
+      try {
+        video.playbackRate = videoRate;
+      } catch {}
       video.classList.add("videoVisible");
     };
 
@@ -113,7 +125,8 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
     };
 
     const onTimeUpdate = () => {
-      const d = video.duration, t = video.currentTime;
+      const d = video.duration,
+        t = video.currentTime;
       if (isFinite(d) && d > 0) {
         const ratio = Math.min(1, Math.max(0, t / d));
         if (ratio < titleDelayRatio) {
@@ -162,7 +175,14 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
       <div className="bgOverlay" />
 
       {/* Smoke video (below title) */}
-      <video ref={videoRef} className="video" src={videoSrc} muted playsInline preload="auto" />
+      <video
+        ref={videoRef}
+        className="video"
+        src={videoSrc}
+        muted
+        playsInline
+        preload="auto"
+      />
 
       {/* Title ABOVE the video, only after video begins */}
       {videoStarted && (
@@ -170,7 +190,9 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
           className="titleOver"
           style={{
             opacity: titleProgress,
-            transform: `translateY(${mobileTitleShift + (1 - titleProgress) * 12}px) scale(${0.98 + 0.02 * titleProgress})`,
+            transform: `translateY(${
+              mobileTitleShift + (1 - titleProgress) * 12
+            }px) scale(${0.98 + 0.02 * titleProgress})`,
           }}
         >
           {titleText}
@@ -197,56 +219,119 @@ const IntroCriccGenie: React.FC<IntroProps> = ({
 
       <style jsx>{`
         .introRoot {
-          position: fixed; inset: 0; z-index: 9999;
-          display: grid; place-items: center;
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: grid;
+          place-items: center;
           background: #000;
-          opacity: 1; visibility: visible;
+          opacity: 1;
+          visibility: visible;
           transition: opacity 300ms ease, visibility 300ms ease;
         }
-        .introFadeOut { opacity: 0; visibility: hidden; pointer-events: none; }
+        .introFadeOut {
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
 
         .bgOverlay {
-          position: absolute; inset: 0; z-index: -3;
-          background: url("https://t3.ftcdn.net/jpg/09/73/36/68/360_F_973366841_yGH8DXoBqqoHYa6otw6qLoplRnskRAl7.jpg") center/cover no-repeat;
-          filter: brightness(0.4); opacity: 0.5;
+          position: absolute;
+          inset: 0;
+          z-index: -3;
+          background: url("https://t3.ftcdn.net/jpg/09/73/36/68/360_F_973366841_yGH8DXoBqqoHYa6otw6qLoplRnskRAl7.jpg")
+            center/cover no-repeat;
+          filter: brightness(0.4);
+          opacity: 0.5;
         }
 
         .video {
-          position: absolute; inset: 0; z-index: -2;
-          width: 100%; height: 100%; object-fit: cover;
-          opacity: 0; transition: opacity 450ms ease, filter 380ms ease;
+          position: absolute;
+          inset: 0;
+          z-index: -2;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+          transition: opacity 450ms ease, filter 380ms ease;
         }
-        .videoVisible { opacity: 1; }
-        .videoOut { opacity: 0; filter: blur(6px); } /* fades at same time as lamp */
+        .videoVisible {
+          opacity: 1;
+        }
+        .videoOut {
+          opacity: 0;
+          filter: blur(6px);
+        } /* fades at same time as lamp */
 
         .titleOver {
-          position: absolute; inset: 0; z-index: -1; /* above video (-2), below lamp (0) */
-          display: grid; place-items: center;
-          color: #ffffff;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
+          position: absolute;
+          inset: 0;
+          z-index: -1; /* above video (-2), below lamp (0) */
+          display: grid;
+          place-items: center;
+          font-weight: 700;
+          text-transform: capitalize;
           font-size: clamp(26px, 7vw, 86px);
           text-align: center;
-          text-shadow: 0 6px 28px rgba(0,0,0,.65);
-          mix-blend-mode: screen;
           pointer-events: none;
           will-change: opacity, transform;
+
+          /* Gradient text */
+          background: linear-gradient(
+            90deg,
+            #ff6a00,
+            #ff00d4,
+            #0080ff,
+            #00ff95
+          );
+          background-size: 300% 300%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+
+          /* Glow/shadow */
+          text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+
+          /* Optional animation for extra vibrancy */
+          animation: gradientShift 6s ease-in-out infinite;
+          mix-blend-mode: screen;
         }
 
-        .mover { position: absolute; top: 0; right: 0; will-change: transform; z-index: 0; }
-        .moverOut { opacity: 0; transition: opacity 380ms ease; } /* ⬅️ matches .videoOut timing */
+        @keyframes gradientShift {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+
+        .mover {
+          position: absolute;
+          top: 0;
+          right: 0;
+          will-change: transform;
+          z-index: 0;
+        }
+        .moverOut {
+          opacity: 0;
+          transition: opacity 380ms ease;
+        } /* ⬅️ matches .videoOut timing */
 
         .lamp {
-          width: 100%; height: 100%;
-          mix-blend-mode: screen; user-select: none;
-          filter: drop-shadow(0 0 18px rgba(255,255,255,.2));
+          width: 100%;
+          height: 100%;
+          mix-blend-mode: screen;
+          user-select: none;
+          filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.2));
         }
 
         @media (max-width: 640px) {
           .titleOver {
-            letter-spacing: 0.10em;
-            text-shadow: 0 4px 18px rgba(0,0,0,.7);
+            letter-spacing: 0.1em;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
           }
         }
       `}</style>
