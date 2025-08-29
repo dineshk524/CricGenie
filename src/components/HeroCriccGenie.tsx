@@ -62,7 +62,7 @@ const HeroCriccGenie: React.FC = () => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
-    const INTRO_TIME = 5500;
+    const INTRO_TIME = 8000;
     const t = setTimeout(() => setStep(1), INTRO_TIME);
     return () => clearTimeout(t);
   }, []);
